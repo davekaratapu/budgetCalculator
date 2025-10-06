@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Budget Calculator</title>
+  <style>
+    /* -------- Reset & Base Styles -------- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      padding: 1rem;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* -------- Container -------- */
+    #container {
+      max-width: 500px;
+      background-color: #fff;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* -------- Form Styles -------- */
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 0.3rem;
+      font-weight: 500;
+    }
+
+    input[type="text"] {
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 0.75rem;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 0.5rem;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* -------- Output Styles -------- */
+    #output, #saving {
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    #output {
+      color: #e74c3c;
+    }
+
+    #saving {
+      color: #27ae60;
+    }
+
+    /* -------- Responsive Design -------- */
+    @media (max-width: 600px) {
+      #container {
+        padding: 1.2rem;
+      }
+
+      input[type="text"] {
+        font-size: 1rem;
+      }
+
+      button {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="container">
+    <h2>Budget Calculator</h2>
+    <p>Spend smartly, Invest daily</p>
+
+    <form onsubmit="event.preventDefault(); calTotalLoss();">
+      <label for="income">Monthly Income:</label>
+      <input type="text" id="income" placeholder="3000">
+
+      <label for="tithing">Tithing:</label>
+      <input type="text" id="tithing" placeholder="300">
+
+      <label for="rent">Rent:</label>
+      <input type="text" id="rent" placeholder="1234">
+
+      <label for="water">Water/HOA:</label>
+      <input type="text" id="water" placeholder="180">
+
+      <label for="electricity">Electricity:</label>
+      <input type="text" id="electricity" placeholder="50">
+
+      <label for="internet">Internet:</label>
+      <input type="text" id="internet" placeholder="50">
+
+      <label for="rentInsurance">Renters Insurance:</label>
+      <input type="text" id="rentInsurance" placeholder="10">
+
+      <label for="carInsurance">Car Insurance:</label>
+      <input type="text" id="carInsurance" placeholder="100">
+
+      <label for="carGas">Car Gas:</label>
+      <input type="text" id="carGas" placeholder="100">
+
+      <label for="netflix">Netflix:</label>
+      <input type="text" id="netflix" placeholder="7">
+
+      <label for="amazon">Amazon:</label>
+      <input type="text" id="amazon" placeholder="14">
+
+      <label for="shopping">Shopping:</label>
+      <input type="text" id="shopping" placeholder="200">
+
+      <label for="food">Food:</label>
+      <input type="text" id="food" placeholder="100">
+
+      <label for="restaurant">Restaurant:</label>
+      <input type="text" id="restaurant" placeholder="50">
+
+      <label for="entertainment">Entertainment:</label>
+      <input type="text" id="entertainment" placeholder="50">
+
+      <button type="submit">Calculate Total</button>
+    </form>
+
+    <div id="output">Total Spent: $0</div>
+    <div id="saving">Total Left: $0</div>
+  </div>
+
+  <script>
+    function calTotalLoss() {
+      const fields = [
+        'tithing', 'rent', 'water', 'electricity', 'internet',
+        'rentInsurance', 'carInsurance', 'carGas', 'netflix',
+        'amazon', 'shopping', 'food', 'restaurant', 'entertainment'
+      ];
+
+      let total = 0;
+
+      fields.forEach(id => {
+        const value = parseFloat(document.getElementById(id).value) || 0;
+        total += value;
+      });
+
+      const income = parseFloat(document.getElementById('income').value) || 0;
+      const remaining = income - total;
+
+      document.getElementById('output').innerText = `Total Spent: $${total.toFixed(2)}`;
+      document.getElementById('saving').innerText = `Total Left: $${remaining.toFixed(2)}`;
+    }
+  </script>
+
+</body>
+</html>
