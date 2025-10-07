@@ -95,7 +95,7 @@
     .back-button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #2869e9;
+  background-color: #c3c4c7;
   color: white;
   text-decoration: none;
   border-radius: 6px;
@@ -126,10 +126,10 @@
 </head>
 <body>
 
-  <div id="container">
+  <div id="container"><a href="https://davekaratapu.github.io/simplyEssentials/" class="back-button">← Back</a>
     <h2>Budget Calculator</h2>
     <p>Spend smartly, Invest daily</p>
-    <a href="https://davekaratapu.github.io/simplyEssentials/" class="back-button">← Back</a>
+    
 
     <form onsubmit="event.preventDefault(); calTotalLoss();">
       <label for="income">Monthly Income:</label>
@@ -182,7 +182,9 @@
 
     <div id="output">Total Spent: $0</div>
     <div id="saving">Total Left: $0</div>
+    
   </div>
+  
 
   <script>
     function calTotalLoss() {
